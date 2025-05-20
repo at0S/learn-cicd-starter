@@ -1,6 +1,6 @@
-FROM --platform=linux/amd64 debian:stable-slim
-
-RUN apt-get update && apt-get install -y ca-certificates
+# syntax=docker/dockerfile:1
+ARG BUILDPLATFORM
+FROM --platform=$BUILDPLATFORM golang:bookworm
 
 ADD notely /usr/bin/notely
 
