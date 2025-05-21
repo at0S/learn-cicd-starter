@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '--build-arg', 'BUILDPLATFORM=linux/amd64',
+        '--tag', 'australia-southeast1-docker.pkg.dev/pacific-engine-460523-r9/notely-ar-repo/notely:v0.1.0',
+        '--tag', 'australia-southeast1-docker.pkg.dev/pacific-engine-460523-r9/notely-ar-repo/notely:latest',
+        '.'
+      ]
+images:
+  - 'australia-southeast1-docker.pkg.dev/pacific-engine-460523-r9/notely-ar-repo/notely:v0.1.0'
+  - 'australia-southeast1-docker.pkg.dev/pacific-engine-460523-r9/notely-ar-repo/notely:latest'
