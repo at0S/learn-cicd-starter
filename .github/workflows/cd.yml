@@ -18,3 +18,8 @@ jobs:
       - name: Build
         run: |
           scripts/buildprod.sh
+
+      - name: Build on Cloud
+        run: |
+          gcloud builds submit \
+            --config=cloudbuild.yaml
