@@ -19,6 +19,9 @@ jobs:
         run: |
           scripts/buildprod.sh
 
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
       - name: Build on Cloud
         run: |
           gcloud builds submit \
