@@ -22,4 +22,5 @@ jobs:
       - name: Build on Cloud
         run: |
           gcloud builds submit \
-            --config=cloudbuild.yaml
+            --config=cloudbuild.yaml \
+            --project=pacific-engine-460523-r9
