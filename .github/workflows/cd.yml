@@ -13,14 +13,13 @@ jobs:
       - name: Set up golang
         uses: actions/setup-go@v5
         with:
-          go-version: "1.24.3"
+          go-version: "1.24.4"
 
       - name: Build
         run: |
           scripts/buildprod.sh
 
-      - id: 'auth'
-        name: Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
@@ -32,4 +31,11 @@ jobs:
         run: |
           gcloud builds submit \
             --config=cloudbuild.yaml \
-            --project=pacific-engine-460523-r9
+            --substitutions=_VERSION='v0.1.1'
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy \
+            --config=cloudrun.yaml \
+            --substitutions=_VERSION='v0.1.1' \
+            --quiet
