@@ -58,7 +58,11 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy \
-            --config=cloudrun.yaml \
-            --substitutions=_VERSION=$VERSION \
+          gcloud run deploy notely \
+            --image=australia-southeast1-docker.pkg.dev/pacific-engine-460523-r9/notely-ar-repo/notely:$VERSION \
+            --region=australia-southeast1 \
+            --allow-unauthenticated \
+            --project=pacific-engine-460523-r9 \
+            --max-instances=4 \
+            --platform=managed \
             --quiet
