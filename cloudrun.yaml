@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - notely
+      - --image=${_REGION}-docker.pkg.dev/${_PROJECT_ID}/notely-ar-repo/${_APP}:${_VERSION}
+      - --region=${_REGION}
+      - --allow-unauthenticated
+      - --project=${_PROJECT_ID}
+      - --max-instances=4
+      - --platform=managed
+images:
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/notely-ar-repo/${_APP}:${_VERSION}'
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/notely-ar-repo/${_APP}:latest'
+
+substitutions:
+  _REGION: 'australia-southeast1'
+  _PROJECT_ID: 'pacific-engine-460523-r9'
+  _APP: 'notely'
+  _VERSION: 'v.0'
